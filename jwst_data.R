@@ -69,8 +69,8 @@ tempSides <-
     "<span style = 'font-size:18pt'>**Температура**</span><br>
     <span style = 'font-size:16pt'>Защитного экрана </span><span style='font-size:18pt;color:{red_color}'>**{jwst_data$tempC.tempWarmSide1C}**</span><span style='font-size:18pt'>°C</span><br>
     <span style = 'font-size:16pt'>Панели оборудования </span><span style='font-size:18pt;color:{red_color}'>**{jwst_data$tempC.tempWarmSide2C}**</span></span><span style='font-size:18pt'>°C</span><br>
-    <span style = 'font-size:16pt'>Радиатора </span><span style='font-size:18pt;color:{blue_color}'>**{jwst_data$tempC.tempCoolSide1C}**</span></span><span style='font-size:18pt'>°C</span><br>
-    <span style = 'font-size:16pt'>Главного зеркала </span><span style='font-size:18pt;color:{blue_color}'>**{jwst_data$tempC.tempCoolSide2C}**</span></span><span style='font-size:18pt'>°C</span>"
+    <span style = 'font-size:16pt'>Главного зеркала </span><span style='font-size:18pt;color:{blue_color}'>**{jwst_data$tempC.tempCoolSide1C}**</span></span><span style='font-size:18pt'>°C</span><br>
+    <span style = 'font-size:16pt'>Радиатора </span><span style='font-size:18pt;color:{blue_color}'>**{jwst_data$tempC.tempCoolSide2C}**</span></span><span style='font-size:18pt'>°C</span>"
   )
 
 ggplot(mapping = aes(1:100, 1:100)) +
