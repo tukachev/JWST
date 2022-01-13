@@ -18,6 +18,7 @@ library(showtext)
 library(ggdark)
 library(ggtext)
 library(formattable)
+library(magick)
 
 font_add_google("Jura", family = "Jura")
 showtext_auto()
@@ -48,7 +49,9 @@ server <- function(input, output) {
         here("jwst_deployment_status.png"),
         mode = 'wb'
       )
-      img <- readPNG(here("jwst_deployment_status.png"))
+      # img <- readPNG(here("jwst_deployment_status.png"))
+      img <- magick::image_read(here("jwst_deployment_status.png"))
+      img <- magick::image_crop(img, "940x940+5+5")
       
       # преобразуем данные для графика
       current_date_time <- lubridate::ymd_hms(jwst_data$timestamp)
@@ -97,6 +100,8 @@ server <- function(input, output) {
     <span style = 'font-size:16pt'>Главного зеркала </span><span style='font-size:18pt;color:{blue_color}'>**{jwst_data$tempC.tempCoolSide1C}**</span></span><span style='font-size:18pt'>°C</span><br>
     <span style = 'font-size:16pt'>Радиатора </span><span style='font-size:18pt;color:{blue_color}'>**{jwst_data$tempC.tempCoolSide2C}**</span></span><span style='font-size:18pt'>°C</span>"
         )
+      # текущий шаг
+      status <- str_split(jwst_data$currentDeploymentStep, "-")[[1]][1]
       
       ggplot(mapping = aes(1:100, 1:100)) +
         annotation_raster(
@@ -166,7 +171,8 @@ server <- function(input, output) {
           title = "Параметры полёта телескопа «Джеймс Уэбб»",
           subtitle =
             glue(
-              "Текущий статус на <span style='color:#FFD900'>**{current_date_time} UTC**</span><br>"
+              "Текущий статус на <span style='color:#FFD900'>**{current_date_time} UTC**</span><br>
+        <b style='font-size:16pt'>Описание: {status}<b>"
             ),
           caption = glue(
             "**Данные:** Public REST API github.com/avatsaev/webb-tracker-api<br>
@@ -191,7 +197,7 @@ server <- function(input, output) {
           plot.margin = margin(10, 10, 5, 10),
           plot.subtitle = element_markdown(
             hjust = 0,
-            size = rel(1.2),
+            # size = rel(1.2),
             family = "Jura"
           ),
           plot.title = element_markdown(
@@ -201,6 +207,7 @@ server <- function(input, output) {
             color = "white"
           )
         )
+      
     }, res = 150)
 }
 
