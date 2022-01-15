@@ -51,7 +51,8 @@ server <- function(input, output) {
       )
       # img <- readPNG(here("jwst_deployment_status.png"))
       img <- magick::image_read(here("jwst_deployment_status.png"))
-      img <- magick::image_crop(img, "940x940+5+5")
+      # img <- magick::image_crop(img, "940x940+5+5")
+      # img <- magick::image_scale(img, "50%")
       
       # преобразуем данные для графика
       current_date_time <- lubridate::ymd_hms(jwst_data$timestamp)
@@ -106,10 +107,14 @@ server <- function(input, output) {
       ggplot(mapping = aes(1:100, 1:100)) +
         annotation_raster(
           img,
-          xmin = -Inf,
-          xmax = Inf,
-          ymin = -Inf,
-          ymax = Inf
+          # xmin = -Inf,
+          # xmax = Inf,
+          # ymin = -Inf,
+          # ymax = Inf
+          xmin = 25,
+          xmax = 85,
+          ymin = 0,
+          ymax = 70
         ) +
         geom_blank() +
         geom_richtext(
@@ -172,7 +177,7 @@ server <- function(input, output) {
           subtitle =
             glue(
               "Текущий статус на <span style='color:#FFD900'>**{current_date_time} UTC**</span><br>
-        <b style='font-size:16pt'>Описание: {status}<b>"
+        <b style='font-size:16pt'>Описание этапа: {status}<b>"
             ),
           caption = glue(
             "**Данные:** Public REST API github.com/avatsaev/webb-tracker-api<br>
