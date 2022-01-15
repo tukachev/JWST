@@ -1,6 +1,6 @@
 # JWST
 
-**Параметры полёта телескопа JWST**
+**Параметры полёта телескопа JWST (James Webb Space Telescope)**
 
 Скачиваем данные с параметрами телескопа через API <https://github.com/avatsaev/webb-tracker-api> и делаем мини-дашборд с помощью ggplot2
 
