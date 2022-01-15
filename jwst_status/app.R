@@ -111,10 +111,10 @@ server <- function(input, output) {
           # xmax = Inf,
           # ymin = -Inf,
           # ymax = Inf
-          xmin = 25,
+          xmin = 30,
           xmax = 85,
-          ymin = 0,
-          ymax = 70
+          ymin = -1,
+          ymax = 80
         ) +
         geom_blank() +
         geom_richtext(
