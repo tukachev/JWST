@@ -44,8 +44,8 @@ server <- function(input, output) {
       jwst_data <- as_tibble_row(unlist(jwst_data))
       # загружаем состояние телескопа в виде картинки
       download.file(
-        url = gsub(pattern = "Crop", "", jwst_data$deploymentImgURL),
-        # url = jwst_data$deploymentImgURL,
+        # url = gsub(pattern = "Crop", "", jwst_data$deploymentImgURL),
+        url = jwst_data$deploymentImgURL,
         here("jwst_deployment_status.png"),
         mode = 'wb'
       )
@@ -107,14 +107,14 @@ server <- function(input, output) {
       ggplot(mapping = aes(1:100, 1:100)) +
         annotation_raster(
           img,
-          # xmin = -Inf,
-          # xmax = Inf,
-          # ymin = -Inf,
-          # ymax = Inf
-          xmin = 30,
-          xmax = 85,
-          ymin = -1,
-          ymax = 80
+          xmin = -Inf,
+          xmax = Inf,
+          ymin = -Inf,
+          ymax = Inf
+          # xmin = 30,
+          # xmax = 85,
+          # ymin = -1,
+          # ymax = 80
         ) +
         geom_blank() +
         geom_richtext(

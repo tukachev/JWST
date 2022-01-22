@@ -18,6 +18,8 @@
 
 ![](james_webb_status_04.png)
 
+![](james_webb_status_05.png)
+
 **Обновляемый вариант**
 
 <https://psych.shinyapps.io/jwst_status/>
