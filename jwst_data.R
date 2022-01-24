@@ -188,7 +188,7 @@ ggplot(mapping = aes(1:100, 1:100)) +
   )
 
 ggsave(
-  here("james_webb_status_06.png"),
+  here("james_webb_status_07.png"),
   device = agg_png,
   width = 7,
   height = 6,
