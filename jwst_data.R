@@ -26,7 +26,7 @@ download.file(
 # img <- readPNG(here("jwst_deployment_status.png"))
 img <- magick::image_read(here("jwst_deployment_status.png"))
 # img <- magick::image_crop(img, "940x940+5+5")
-# img <- magick::image_scale(img, "50%")
+img <- magick::image_scale(img, "80%")
 
 # преобразуем данные для графика
 current_date_time <- lubridate::ymd_hms(jwst_data$timestamp)
@@ -81,14 +81,14 @@ status <- str_split(jwst_data$currentDeploymentStep, "-")[[1]][1]
 ggplot(mapping = aes(1:100, 1:100)) +
   annotation_raster(
     img,
-    xmin = -Inf,
-    xmax = Inf,
-    ymin = -Inf,
-    ymax = Inf
-    # xmin = 30,
-    # xmax = 85,
-    # ymin = -1,
-    # ymax = 80
+    # xmin = -Inf,
+    # xmax = Inf,
+    # ymin = -Inf,
+    # ymax = Inf
+    xmin = 1,
+    xmax = 90,
+    ymin = -1,
+    ymax = 80
   ) +
   geom_blank() +
   geom_richtext(
@@ -188,7 +188,7 @@ ggplot(mapping = aes(1:100, 1:100)) +
   )
 
 ggsave(
-  here("james_webb_status_05.png"),
+  here("james_webb_status_06.png"),
   device = agg_png,
   width = 7,
   height = 6,
